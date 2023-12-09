@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import Chart from "./ui/Chart/Chart";
 import Block from "@/shared/ui/Block/Block";
@@ -18,6 +19,12 @@ export default function Charts({}: Props) {
       />
       <div className="mt-30">
         {tab === "Текущий курс" ? <Chart /> : <Forecasts />}
+      </div>
+
+      <div className="mt-20 text-xl">
+        Доллар и Юань будут{" "}
+        <span className="text-green-600 font-semibold ">расти </span>
+        ближайшую неделю
       </div>
     </Block>
   );

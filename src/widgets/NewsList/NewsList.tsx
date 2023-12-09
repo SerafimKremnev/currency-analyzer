@@ -1,40 +1,17 @@
-"use client";
 import NewPreview from "@/features/NewPreview/NewPreview";
 import React from "react";
+import { getNews } from "./api/getNews";
 
 type Props = {};
 
-const news = [
-  {
-    title:
-      "В ВТБ сообщили, что юань обогнал евро в валютных сбережениях россиян",
-    image: "/images/y.webp",
-    href: "/news/1",
-    previewText:
-      "В валютном кошельке россиян в ВТБ по-прежнему лидирует доллар, однако юань смог потеснить евро со второго места, рассказал зампред банка. По его словам, на долю юаня уже приходится 24%, а в конце года она вырастет до 25%",
-  },
-  {
-    title:
-      "В ВТБ сообщили, что юань обогнал евро в валютных сбережениях россиян",
-    image: "/images/y.webp",
-    href: "/news/1",
-    previewText:
-      "В валютном кошельке россиян в ВТБ по-прежнему лидирует доллар, однако юань смог потеснить евро со второго места, рассказал зампред банка. По его словам, на долю юаня уже приходится 24%, а в конце года она вырастет до 25%",
-  },
-  {
-    title:
-      "В ВТБ сообщили, что юань обогнал евро в валютных сбережениях россиян",
-    image: "/images/y.webp",
-    href: "/news/1",
-    previewText:
-      "В валютном кошельке россиян в ВТБ по-прежнему лидирует доллар, однако юань смог потеснить евро со второго места, рассказал зампред банка. По его словам, на долю юаня уже приходится 24%, а в конце года она вырастет до 25%",
-  },
-];
-export default function NewsList({}: Props) {
+export const revalidate = 60;
+
+export default async function NewsList({}: Props) {
+  const news = await getNews();
   return (
-    <div className="overflow-auto absolute grid gap-20 left-0 right-0 top-0 bottom-0">
-      {news.map((el, i) => (
-        <NewPreview key={i} {...el} />
+    <div className="overflow-auto absolute grid gap-20 left-0 right-0 top-0 bottom-0 md-max:overflow-visible">
+      {news.slice(0, 3).map((el, i) => (
+        <NewPreview key={el.id} article={el} />
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,8 +7,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { currencyNextDays } from "@/shared/data/currency";
 
 ChartJS.register(
   CategoryScale,
@@ -19,51 +20,43 @@ ChartJS.register(
   Legend
 );
 
-type Props = {
-
-}
+type Props = {};
 
 export default function Forecasts({}: Props) {
-
   const options = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: "top" as const,
       },
       title: {
         display: true,
-        text: 'Прогнозы на неделю',
+        text: "Прогнозы на неделю",
       },
     },
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
   const data = {
-    labels,
+    labels: currencyNextDays.dates,
     datasets: [
       {
-        label: 'Рубль',
-        data: [Math.random() * 100, -Math.random() * 100, Math.random() * 100, Math.random() * 100],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        label: "Юань",
+        data: currencyNextDays.CNY,
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
-        label: 'Юань',
-        data: [-Math.random() * 100, Math.random() * 100, Math.random() * 100, -Math.random() * 100],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-      {
-        label: 'Доллар',
-        data: [-Math.random() * 100, -Math.random() * 100, Math.random() * 100, Math.random() * 100],
-        backgroundColor: 'rgba(246, 161, 99, 0.5)',
+        label: "Доллар",
+        data: currencyNextDays.USD,
+        borderColor: "rgb(246, 161, 99)",
+        backgroundColor: "rgba(246, 161, 99, 0.5)",
       },
     ],
   };
 
   return (
     <div>
-      <Bar data={data} options={options}/>
+      <Bar data={data} options={options} />
     </div>
-  )
+  );
 }
