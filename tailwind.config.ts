@@ -154,7 +154,7 @@ const config: Config = {
       xl: [
         '2rem',
         {
-          'line-height': '120%',
+          lineHeight: '120%',
         },
       ],
       '2xl': [
