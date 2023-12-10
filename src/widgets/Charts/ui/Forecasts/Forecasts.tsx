@@ -3,23 +3,24 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { currencyNextDays } from "@/shared/data/currency";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
 );
-
 type Props = {};
 
 export default function Forecasts({}: Props) {
@@ -40,6 +41,12 @@ export default function Forecasts({}: Props) {
     labels: currencyNextDays.dates,
     datasets: [
       {
+        label: "Евро",
+        data: currencyNextDays.CNY,
+        borderColor: "rgb(92, 92, 199)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+      {
         label: "Юань",
         data: currencyNextDays.CNY,
         borderColor: "rgb(53, 162, 235)",
@@ -56,7 +63,7 @@ export default function Forecasts({}: Props) {
 
   return (
     <div>
-      <Bar data={data} options={options} />
+      <Line data={data} options={options} />
     </div>
   );
 }

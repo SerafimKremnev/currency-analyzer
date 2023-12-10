@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/shared/api/axios"
+import { news } from "@/shared/data/news"
 import axios from "axios"
 
 export interface INews {
@@ -13,10 +14,9 @@ export interface INews {
 
 export async function getNews() {
   try {
-    const res = await axiosInstance<INews[]>('/news')
-    return res.data
+    return news
   } catch (e) {
     console.error(e)
-    return []
+    return news
   }
 }

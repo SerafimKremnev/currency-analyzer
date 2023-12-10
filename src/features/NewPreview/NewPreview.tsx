@@ -41,6 +41,7 @@ export default function NewPreview({ article, isOverflow }: Props) {
           className="mt-30 [&>ul]:list-disc [&>ul]:ml-20 [&>ul>li]:!mb-10"
         ></div>
       )}
+      <div className="mt-10 text-right text-gray-400">Источник: РБК</div>
     </Block>
   ) : (
     <Link href={`/news/${article.id}`}>

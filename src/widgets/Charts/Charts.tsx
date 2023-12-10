@@ -4,10 +4,14 @@ import Chart from "./ui/Chart/Chart";
 import Block from "@/shared/ui/Block/Block";
 import Forecasts from "./ui/Forecasts/Forecasts";
 import { Segmented } from "antd";
+import { IHistory } from "@/app/page";
+import { calculateNextWeekForecast } from "@/shared/utils/calculateNextWeek";
 
-type Props = {};
+type Props = {
+  values: IHistory;
+};
 
-export default function Charts({}: Props) {
+export default function Charts({ values }: Props) {
   const [tab, setTab] = useState("Текущий курс");
   return (
     <Block className="w-full grow">
@@ -18,13 +22,11 @@ export default function Charts({}: Props) {
         block
       />
       <div className="mt-30">
-        {tab === "Текущий курс" ? <Chart /> : <Forecasts />}
-      </div>
-
-      <div className="mt-20 text-xl">
-        Доллар и Юань будут{" "}
-        <span className="text-green-600 font-semibold ">расти </span>
-        ближайшую неделю
+        <Chart
+          values={
+            tab === "Текущий курс" ? values : calculateNextWeekForecast(values)
+          }
+        />
       </div>
     </Block>
   );

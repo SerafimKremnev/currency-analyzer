@@ -1,11 +1,14 @@
 "use client";
 
+import { IVariants } from "@/app/page";
 import Block from "@/shared/ui/Block/Block";
 import { InputNumber, Select } from "antd";
 import { Option } from "antd/es/mentions";
 import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  variants: any;
+};
 type SelectProps = {
   val: string;
   value: string;
@@ -22,32 +25,16 @@ const SelectAfter = ({ val, value, onChange }: SelectProps) => (
     <Option value="RUB">₽</Option>
     <Option value="USD">$</Option>
     <Option value="CNY">¥</Option>
+    <Option value="EUR">€</Option>
   </Select>
 );
 
-export default function Converter({}: Props) {
+export default function Converter({ variants }: Props) {
   const variantsSymb: any = {
     RUB: "₽",
-    CNY: "$",
-    USD: "¥",
-  };
-
-  const variants: any = {
-    RUB: {
-      CNY: 0.0773,
-      RUB: 1,
-      USD: 0.01081,
-    },
-    CNY: {
-      CNY: 1,
-      RUB: 12.9373,
-      USD: 0.1397,
-    },
-    USD: {
-      CNY: 7.1593,
-      RUB: 92.5429,
-      USD: 1,
-    },
+    CNY: "¥",
+    USD: "$",
+    EUR: "€",
   };
 
   const [value, setValue] = useState<null | number>(100);
@@ -73,7 +60,7 @@ export default function Converter({}: Props) {
       />
       <div>
         {parseFloat((variants[left][right] * (value || 0)).toFixed(3))}
-        {variantsSymb[left]}
+        {variantsSymb[right]}
       </div>
     </Block>
   );

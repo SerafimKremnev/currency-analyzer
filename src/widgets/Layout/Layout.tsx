@@ -17,8 +17,7 @@ export default function Layout({ children }: Props) {
         <main className="flex-grow bg">{children}</main>
         <footer className="flex gap-20 justify-end text-gray-500">
           <Block>
-            © {format(new Date(Date.now()), "yyyy")} Powered by by
-            SerafimKremnev
+            © {format(new Date(Date.now()), "yyyy")} Powered by SerafimKremnev
           </Block>
         </footer>
       </div>
