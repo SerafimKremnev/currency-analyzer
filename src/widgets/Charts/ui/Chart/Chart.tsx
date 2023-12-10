@@ -60,8 +60,8 @@ export default function Chart({ values }: Props) {
       {
         label: "Доллар",
         data: values.USD.map((d) => d.val).reverse(),
-        borderColor: "rgb(246, 161, 99)",
-        backgroundColor: "rgba(246, 161, 99, 0.5)",
+        borderColor: "rgb(0, 204, 18)",
+        backgroundColor: "rgba(0, 204, 18, 0.5)",
       },
       {
         label: "Eвро",
