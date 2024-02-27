@@ -1,9 +1,6 @@
 import AnalyzeBlock from "@/widgets/AnalyzeBlock/AnalyzeBlock";
 import NewsList from "@/widgets/NewsList/NewsList";
 import { axiosInstance } from "@/shared/api/axios";
-import { INews } from "@/widgets/NewsList/api/getNews";
-import { today } from "@/shared/data/currencyToday";
-import { currencyMonth } from "@/shared/data/currency";
 
 type ICourse = {
   CNY: number;
@@ -31,17 +28,22 @@ export type IHistory = {
 };
 
 async function getData() {
-  // const { data: USD } = await axiosInstance<ICourse>(`/values/?base=USD`);
-  // const { data: CNY } = await axiosInstance<ICourse>(`/values/?base=CNY`);
-  // const { data: RUB } = await axiosInstance<ICourse>(`/values/?base=RUB`);
-  // const { data: EUR } = await axiosInstance<ICourse>(`/values/?base=EUR`);
+  const { data: USD } = await axiosInstance<ICourse>(`/values/?base=USD`);
+  const { data: CNY } = await axiosInstance<ICourse>(`/values/?base=CNY`);
+  const { data: RUB } = await axiosInstance<ICourse>(`/values/?base=RUB`);
+  const { data: EUR } = await axiosInstance<ICourse>(`/values/?base=EUR`);
 
-  // const { data: historyValues } = await axiosInstance<IHistory>(
-  //   `/history-values`
-  // );
+  const { data: historyValues } = await axiosInstance<IHistory>(
+    `/history-values`
+  );
   return {
-    variants: today,
-    historyValues: currencyMonth,
+    variants: {
+      USD,
+      CNY,
+      RUB,
+      EUR,
+    },
+    historyValues,
   };
 }
 

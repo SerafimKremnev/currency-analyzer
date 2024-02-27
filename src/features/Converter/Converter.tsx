@@ -3,7 +3,7 @@
 import { IVariants } from "@/app/page";
 import Block from "@/shared/ui/Block/Block";
 import { InputNumber, Select } from "antd";
-import { Option } from "antd/es/mentions";
+import { Option } from "antd/lib/mentions";
 import React, { useState } from "react";
 
 type Props = {
